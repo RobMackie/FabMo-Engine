@@ -53,6 +53,7 @@ class commands {
   // Function for making hostapd available to nodejs.  Has basic options
   // for the AP, but also allows for pass-in configuration parameters.
   static hostapd(options, callback) {
+    console.log("Begin HostApd Command");
     var commands = [];
 
     // Known good options for the Raspberry PI 3.  If you are using the 
@@ -100,7 +101,7 @@ class commands {
 
       // Then execute the hostapd with the file and boom - AP should be started.
       exec('hostapd ' + path);
-
+      console.log("hostAPD command complete callback starting")
       // Now that we are done - go ahead and let others know.
       if (callback) {
         callback();

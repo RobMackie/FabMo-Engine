@@ -269,6 +269,7 @@ RaspberryPiNetworkManager.prototype._joinAP = function(callback) {
           console.log('configure')
           console.log(err);
           console.log(result);
+          console.log("Name:  " + name + " (at hostapd command)");
           commands.hostapd({
             ssid: name 
           }, () => {
