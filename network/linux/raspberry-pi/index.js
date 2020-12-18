@@ -211,7 +211,9 @@ RaspberryPiNetworkManager.prototype.confirmIP = function(callback) {
   var attempts = 60;
   var counter = 0;
   var interval = setInterval(function() { 
+    console.log("Checking interfaces");
     var interfaces = os.networkInterfaces();
+    console.log(interfaces);
     wlan0Int  = interfaces.wlan0;
     if (counter == attempts || wlan0Int) { 
       if(counter == attempts) {
