@@ -211,9 +211,7 @@ RaspberryPiNetworkManager.prototype.confirmIP = function(callback) {
   var attempts = 60;
   var counter = 0;
   var interval = setInterval(function() { 
-    console.log("Checking interfaces");
     var interfaces = os.networkInterfaces();
-    console.log(interfaces);
     wlan0Int  = interfaces.wlan0;
     if (counter == attempts || wlan0Int) { 
       if(counter == attempts) {
@@ -238,8 +236,11 @@ RaspberryPiNetworkManager.prototype.confirmIP = function(callback) {
 RaspberryPiNetworkManager.prototype._joinAP = function(callback) {
   log.info("Entering AP mode...");
   var interfaces = os.networkInterfaces();
+  console.log(interfaces);
   var wlan0Int =interfaces.wlan0;
   var eth0Int = interfaces.eth0;
+  console.log(eth0Int);
+  console.log(wlan0Int);
   var name = config.engine.get('name').split('0').join('').split('\n').join('').trim();
   var ext;
   if(eth0Int){
