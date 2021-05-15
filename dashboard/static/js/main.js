@@ -144,8 +144,8 @@ require("../css/toastr.min.css");
 
                 dashboard.engine.on('status', function(status) {
                     // console.log('Status Object');
-                    console.log("status state:  "+status.state);
-                    console.log(status);
+                    // console.log("status state:  "+status.state);
+                    // console.log(status);
                     if(status.state == 'dead') {
                         dashboard.showModal({
                             title: 'An Error Occurred!',
