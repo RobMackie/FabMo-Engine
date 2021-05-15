@@ -218,9 +218,6 @@ FabMoDashboard.prototype._download = function(data, strFileName, strMimeType) {
 } // _download
 
 FabMoDashboard.prototype._call = function(name, data, callback) {
-	if (name == 'pause') {
-		console.log('FabmoDashboard call == pause');
-	}
 
 	if(this.isPresent()) {
 		message = {"call":name, "data":data}
@@ -728,7 +725,6 @@ FabMoDashboard.prototype.runNext = function(callback) {
  * @param {Error} callback.err Error object if there was an error.
  */
 FabMoDashboard.prototype.pause = function(callback) {
-	console.log('FabMoDashboard pause');
 	this._call("pause",null, callback);
 }
 

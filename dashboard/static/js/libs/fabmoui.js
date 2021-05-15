@@ -560,6 +560,7 @@ FabMoUI.prototype.updateStatus = function(){
 
 
 FabMoUI.prototype.pause = function(){
+	console.log('FabmoUI pause')
 	var that = this;
 	that.tool.pause(function(err, data){
 		if (err) {
