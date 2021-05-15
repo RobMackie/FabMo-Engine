@@ -382,6 +382,7 @@ define(function(require) {
     }.bind(this));
 
     this._registerHandler('pause', function(data, callback) {
+      console.log('dashboard pause handler');
       this.engine.pause(function(err, result) {
         if (err) {
           callback(err);
