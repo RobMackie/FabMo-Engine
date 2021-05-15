@@ -585,6 +585,7 @@ FabMoUI.prototype.pause = function(){
 FabMoUI.prototype.FileControl = function(){
 	var that = this;
 	$(that.pause_button_selector).click(function(e) {
+		console.log('pause button selector pressed');
 		$(that.pause_button_selector+" div div:first-child").addClass('spinner red');
 		that.pause();
 	});
