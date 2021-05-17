@@ -37,8 +37,9 @@ var canResume = false;
 var clickDisabled = false;
 var interlockBypass = false;
 
-////## total temp KLUDGE
+////## total temp KLUDGEs
 global.CUR_RUNTIME;
+global.NEW_HOLD_preAck;
 
 // Load up all the runtimes that are currently defined
 // TODO - One day, a folder-scan and auto-registration process might be nice here, this is all sort of hand-rolled.
@@ -914,6 +915,7 @@ Machine.prototype.pause = function(callback) {
 		if(this.status.state === "running") {
 			if(this.current_runtime) {
 				this.current_runtime.pause();
+log.debug("current runtime PAUSE called");
 				callback(null, 'paused');
 			} else {
 				callback("Not pausing because no runtime provided");

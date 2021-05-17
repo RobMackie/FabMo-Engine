@@ -302,6 +302,12 @@ G2.prototype.connect = function(path, callback) {
 	// recieve g-codes and JSON commands.  We don't want to do anything until we get that.
 	this.once('ready', function() {
 		this.connected = true;
+
+////## try and clear a stuck hold on restart (without turning off g2)
+//        this._write('\%\n');  // clears hold
+//		this._write('\m30\n'); // clears stat:3 maybe       
+		this._write('\x04\n'); // clears stat:3 maybe       
+
 		this._write('\x04\n', function() {
 			this.requestStatusReport(function() {
 				callback(null, this);
@@ -714,11 +720,18 @@ G2.prototype.feedHold = function(callback) {
     }
     log.debug("Sending a feedhold");
 	if(this.context) {
-		this.context.pause();
+		this.context.pause();  ////## this just manages FabMo Stream
 	}
+
+////## quick test of multi-hold potential cause of G2 misbehavior
+//if (!global.NEW_HOLD_preAck) {
+//	this._write('!\n');
+//	this._write('\!\n');
+//	global.NEW_HOLD_preAck = true;
+//}
 	// TODO this "drained" printout is an old debug thing that can be removed
 		this._write('!\n', function() {
-			log.debug("Drained.OLD?");
+			log.debug("**Hold Call-back from G2 response");
 		});
 };
 
