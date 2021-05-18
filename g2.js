@@ -715,7 +715,7 @@ G2.prototype.feedHold = function(callback) {
 		this.context.pause();
 	}
 	// TODO this "drained" printout is an old debug thing that can be removed
-	this._write('!\n', function() {
+	this._write('!\n!\n', function() {
 		log.debug("Drained.OLD?");
 	});
 };
