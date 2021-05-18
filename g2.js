@@ -704,7 +704,7 @@ G2.prototype.manualFeedHold = function(callback) {
 // "pause" the current machining cycle by issuing a feedhold. Used in Files (not Manual)!
 // callback is called when the next state change takes place.
 G2.prototype.feedHold = function(callback) {
-	this.pause_flag = true;
+	// this.pause_flag = true;
 	this.flooded = false;
 	typeof callback === 'function' && this.once('state', callback);
 	if(this.status.stat === this.STAT_PROBE) {
@@ -716,6 +716,7 @@ G2.prototype.feedHold = function(callback) {
 	}
 	// TODO this "drained" printout is an old debug thing that can be removed
 	if (!this.pause_flag) {
+		this.pause_flag = true;
 		log.debug("No Pause Flage sending hold")
 		this._write('!\n!\n', function() {
 			log.debug("Drained.OLD?");
