@@ -910,8 +910,10 @@ log.debug("call MPO from machine");
 // Pause the machine
 // This is pretty much passed through to whatever runtime is currently in control
 Machine.prototype.pause = function(callback) {
+		log.debug("Machine Pause Called");
 		if(this.status.state === "running") {
 			if(this.current_runtime) {
+				log.debug("calling runtime pause");
 				this.current_runtime.pause();
 				callback(null, 'paused');
 			} else {

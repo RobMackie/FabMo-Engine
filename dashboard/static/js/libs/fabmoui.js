@@ -563,14 +563,18 @@ FabMoUI.prototype.pause = function(){
 	console.log('FabmoUI pause')
 	var that = this;
 	that.tool.pause(function(err, data){
+		console.log("tool pause callback hit");
 		if (err) {
 			console.error(err)
 		} else {
+			console.log("no error requesting status");
 			that.tool.getStatus(function(err, data){
 				if (err) {
 					console.log(err);
 				} else {
+					console.log("get status callback hit no error")
 					if(data.state === "running") {
+						console.log("still Running resend pause");
 						that.pause();
 					}
 				}
