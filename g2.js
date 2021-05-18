@@ -767,7 +767,7 @@ G2.prototype.resume = function() {
 	}
 
 	this.on('stat', onStat);
-	this._write('~'); //cycle start command character
+	this._write('~\n~\n'); //cycle start command character
 
 	if(this.context) {
 		this.context.resume();
