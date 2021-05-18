@@ -209,7 +209,7 @@ G2.prototype._createCycleContext = function() {
 	st.on('data', function(chunk) {
 		// Stream data comes in "chunks" which are often multiple lines
 		chunk = chunk.toString();
-		// log.debug('Context on data Chunk:  ' + chunk);
+		log.debug('Context on data Chunk:  ' + chunk);
 		var newLines = false;
 		// Repartition incoming "chunked" data as lines
 		for(var i=0; i<chunk.length; i++) {
@@ -248,7 +248,9 @@ G2.prototype._createCycleContext = function() {
     ////## TODO: fix this kludge to get the current_runtime !
 	if (global.CUR_RUNTIME !=  "[IdleRuntime]") {
 		log.debug("PREPEND to cycle - " + global.CUR_RUNTIME)	
-		st.write('N1 G90\n ' + 'N2 S1000\n ' + 'N3 G61\n ' + 'N4 M100 ({out4:1})\n ' + 'N5 M0\n ');
+//		st.write('N1 G90\n ' + 'N2 S1000\n ' + 'N3 G61\n ' + 'N4 M100 ({out4:1})\n ' + 'N5 M0\n ');
+////## kludge
+		st.write('N1 G90\n ' + 'N2 S1000\n ' + 'N3 G61\n ' + 'N4 M100 ({out4:1})\n ');
 	}
 
 	// Handle a stream finishing or disconnecting.
@@ -729,10 +731,12 @@ G2.prototype.feedHold = function(callback) {
 //	this._write('\!\n');
 //	global.NEW_HOLD_preAck = true;
 //}
+
 	// TODO this "drained" printout is an old debug thing that can be removed
 		this._write('!\n', function() {
-			log.debug("**Hold Call-back from G2 response");
+			log.debug("**Hold Call-back from ???");
 		});
+
 };
 
 // Clears the queue, this means both the queue of g-codes in the engine to send,
@@ -1165,6 +1169,8 @@ G2.prototype.setMachinePosition = function(position, callback) {
 	});
 
 	gcodes.push(this.status.unit === 'in' ? 'G20\n' : 'G21\n');
+////##
+gcodes.push('M30\n');
 	gcodes.push(null);
 	//TODO: Set manualPrime false once uvw enabled
 	this.runStream(gcodes, true).then(function() {callback && callback()})

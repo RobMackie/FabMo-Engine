@@ -245,7 +245,8 @@ function Machine(control_path, callback) {
 			this.handleOkayCancelDual(stat, auth_input)
 		}else {
 			this.handleOkayButton(stat, auth_input);
-			this.handleCancelButton(stat, quit_input);
+////## trying to get edge to handle resume
+//			this.handleCancelButton(stat, quit_input);
 			
 		}
 
