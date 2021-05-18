@@ -745,7 +745,7 @@ G2.prototype.resume = function() {
 	if(resumePending){
 		return;
 	}
-	log.info("Creating promise " + thisPromise);
+	log.info("Creating promise " + thisPromise + " (resume)");
 	_promiseCounter += 1;
 	resumePending = true;
 	var deferred = Q.defer();
@@ -1022,7 +1022,7 @@ G2.prototype.command = function(obj) {
 G2.prototype._createStatePromise = function(states) {
 	// Track the promise created (debug)
 	var thisPromise = _promiseCounter;
-	log.info("Creating promise " + thisPromise);
+	log.info("Creating promise " + thisPromise + " (State)");
 	_promiseCounter += 1;
 	var deferred = Q.defer();
 	var that = this;
