@@ -715,9 +715,12 @@ G2.prototype.feedHold = function(callback) {
 		this.context.pause();
 	}
 	// TODO this "drained" printout is an old debug thing that can be removed
-	this._write('!\n!\n', function() {
-		log.debug("Drained.OLD?");
-	});
+	if (!this.pause_flag) {
+		log.debug("No Pause Flage sending hold")
+		this._write('!\n!\n', function() {
+			log.debug("Drained.OLD?");
+		});
+	}
 };
 
 // Clears the queue, this means both the queue of g-codes in the engine to send,
